@@ -1,7 +1,8 @@
 plugins {
+    id 'maven-publish'
     id 'com.android.library'
 }
-
+group = 'com.github.woncan'
 android {
     compileSdk 30
 
@@ -34,4 +35,15 @@ dependencies {
     implementation 'com.squareup.okio:okio:3.0.0'
     implementation "com.squareup.okhttp3:okhttp:4.9.3"
     implementation 'io.reactivex.rxjava3:rxjava:3.1.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.woncan'
+            }
+        }
+    }
 }
