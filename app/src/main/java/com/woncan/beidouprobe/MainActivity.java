@@ -80,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
         });
         device.setSatelliteListener(satellite -> Log.i("TAG", "onSatelliteListener: "));
-        device.setDeviceInfoListener(deviceInfo -> Log.i("TAG", "DeviceInfoListener: "));
+        device.setDeviceInfoListener(deviceInfo -> {
+            Log.i("TAG", "DeviceInfoListener: ");
+        });
     }
 
 }
