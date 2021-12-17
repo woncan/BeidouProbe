@@ -23,18 +23,17 @@
 ```
     搜索设备
     List<UsbSerialDriver> serialDeviceList = DeviceManager.getSerialDeviceList(MainActivity.this);
-
+    UsbSerialDriver usbSerialDriver = serialDeviceList.get(0);
     判断权限
-    if (PermissionUtil.hasPermission(MainActivity.this, serialDeviceList.get(0))) {
-            //连接设备
-            connectDevice(serialDeviceList.get(0));
-        } else {
+    if (((UsbManager) getSystemService(Context.USB_SERVICE)).hasPermission(usbSerialDriver.getDevice())) {
+            connectDevice(usbSerialDriver);
+    } else {
             DeviceManager.requestPermission(MainActivity.this, usbSerialDriver, isGranted -> {
-                    if (isGranted) {
-                        connectDevice(usbSerialDriver);
-                    }
-                });
-        }
+            if (isGranted) {
+                    connectDevice(usbSerialDriver);
+                }
+            });
+    }
 ```
 
 #### 连接设备
