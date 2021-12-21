@@ -65,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
         Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
         device.setMessageListener(deviceMessage -> {
-
+            if (deviceMessage.getType()==1){
+                Log.i("TAG", "connectDevice: "+new String(deviceMessage.getMessage()));
+            }
         });
         device.setLocationListener(new LocationListener() {
             @Override
