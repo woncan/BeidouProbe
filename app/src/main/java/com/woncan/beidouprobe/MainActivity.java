@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationChanged(WLocation location) {
                 Log.i("TAG", "onLocationChanged: " + location.toString());
             }
-
-
         });
         device.setSatelliteListener(satellite -> Log.i("TAG", "onSatelliteListener: "));
         device.setDeviceInfoListener(deviceInfo -> {
