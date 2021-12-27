@@ -71,14 +71,15 @@ public class MainActivity extends AppCompatActivity {
         });
         device.setLocationListener(new LocationListener() {
             @Override
+            public void onError(Exception e) {
+                Log.i("TAG", "onError: "+e.getMessage());
+            }
+
+            @Override
             public void onLocationChanged(WLocation location) {
                 Log.i("TAG", "onLocationChanged: " + location.toString());
             }
 
-            @Override
-            public void onStatusChanged(int status) {
-                Log.i("TAG", "onStatusChanged: " + status);
-            }
 
         });
         device.setSatelliteListener(satellite -> Log.i("TAG", "onSatelliteListener: "));
