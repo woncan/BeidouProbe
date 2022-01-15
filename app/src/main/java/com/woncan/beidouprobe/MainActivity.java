@@ -23,6 +23,7 @@ import com.woncan.device.bean.WLocation;
 import com.woncan.device.listener.DeviceInfoListener;
 import com.woncan.device.listener.LocationListener;
 import com.woncan.device.listener.MessageListener;
+import com.woncan.device.listener.NMEAListener;
 import com.woncan.device.listener.SatelliteListener;
 
 import java.io.File;
@@ -64,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
     private void connectDevice(UsbSerialDriver driver) {
 
         Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
-        device.setMessageListener(deviceMessage -> {
-            if (deviceMessage.getType()==1){
-                Log.i("TAG", "connectDevice: "+new String(deviceMessage.getMessage()));
+        device.setNMEAListener(new NMEAListener() {
+            @Override
+            public void onNMEAReceiver(String s) {
+                Log.i("TAG", "onNMEAReceiver: "+s);
             }
         });
         device.setLocationListener(new LocationListener() {
@@ -81,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         device.setSatelliteListener(satellite -> Log.i("TAG", "onSatelliteListener: "));
-        device.setDeviceInfoListener(deviceInfo -> {
-            Log.i("TAG", "DeviceInfoListener: ");
-        });
+        DeviceInfo deviceInfo = device.getDeviceInfo();
     }
 
 }
