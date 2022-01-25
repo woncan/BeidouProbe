@@ -96,6 +96,13 @@
                 String productName = deviceInfo.getProductName(Locale.CHINA);
             }
         });
+	//NMEA数据
+        device.setNMEAListener(new NMEAListener() {
+            @Override
+            public void onNMEAReceiver(String s) {
+                //NMEA回调
+            }
+        });
     }
 ```
 ##### 断开连接
