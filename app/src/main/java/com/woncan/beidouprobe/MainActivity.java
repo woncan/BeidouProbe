@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-
         });
-
     }
 
     private void connectDevice(UsbSerialDriver driver) {
@@ -70,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         device.setSatelliteListener(satellite -> Log.i("TAG", "onSatelliteListener: "));
+        device.setNMEAListener(new NMEAListener() {
+            @Override
+            public void onNMEAReceiver(String s) {
+                //NMEA回调
+            }
+        });
         DeviceInfo deviceInfo = device.getDeviceInfo();
     }
 
