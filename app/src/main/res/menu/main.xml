@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/connect"
+        android:title="连接" />
+
+    <item
+        android:id="@+id/register_connect"
+        android:title="检测设备并连接" />
+
+
+    <item
+        android:id="@+id/one_hz"
+        android:title="1Hz" />
+
+    <item
+        android:id="@+id/five_hz"
+        android:title="5Hz" />
+</menu>
