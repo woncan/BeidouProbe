@@ -4,7 +4,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-
+        flatDir {
+            dirs 'device/libs'
+        }
     }
 }
 rootProject.name = "BeiDouProbe"
