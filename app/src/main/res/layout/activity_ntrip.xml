@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.woncan.beidouprobe.NtripViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".NtripActivity">
+
+        <View
+            android:id="@+id/title_background"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="保存"
+            app:layout_constraintTop_toTopOf="@id/title_background"
+            app:layout_constraintEnd_toEndOf="@id/title_background"
+            app:layout_constraintBottom_toBottomOf="@id/title_background" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="45dp"
+            android:layout_height="0dp"
+            android:scaleType="center"
+            android:backgroundTint="@color/white"
+            app:srcCompat="?attr/homeAsUpIndicator"
+            app:layout_constraintBottom_toBottomOf="@id/title_background"
+            app:layout_constraintStart_toStartOf="@id/title_background"
+            app:layout_constraintTop_toTopOf="@id/title_background" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/title_background"
+            app:layout_constraintEnd_toEndOf="@id/title_background"
+            app:layout_constraintStart_toStartOf="@id/title_background"
+            app:layout_constraintTop_toTopOf="@id/title_background" />
+
+        <TextView
+            android:id="@+id/textView68"
+            style="@style/textStyleNormal"
+            android:text="IP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_background" />
+
+
+        <EditText
+            android:layout_width="200dp"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="@+id/textView68"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:inputType="text"
+            android:text="@={viewModel.ip}"
+            android:hint="请输入"
+            android:paddingEnd="15dp"
+            app:layout_constraintTop_toTopOf="@+id/textView68"
+            app:layout_constraintBottom_toBottomOf="@+id/textView68" />
+
+        <TextView
+            android:id="@+id/textView38"
+            style="@style/textStyleNormal"
+            android:layout_marginTop="1dp"
+            android:text="端口号"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView68" />
+
+
+        <EditText
+            android:layout_width="200dp"
+            android:background="@null"
+            android:gravity="center_vertical|end"
+            app:layout_constraintEnd_toEndOf="@+id/textView38"
+            android:layout_height="0dp"
+            android:paddingEnd="15dp"
+            android:inputType="number"
+            android:text="@={viewModel.port}"
+            android:hint="请输入"
+            app:layout_constraintTop_toTopOf="@+id/textView38"
+            app:layout_constraintBottom_toBottomOf="@+id/textView38" />
+
+        <TextView
+            android:id="@+id/textView39"
+            style="@style/textStyleNormal"
+            android:layout_marginTop="1dp"
+            android:text="账号"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+
+        <EditText
+            android:layout_width="200dp"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="@+id/textView39"
+            android:layout_height="0dp"
+            android:paddingEnd="15dp"
+            android:gravity="center_vertical|end"
+            android:inputType="text"
+            android:text="@={viewModel.account}"
+            android:hint="请输入"
+            app:layout_constraintTop_toTopOf="@+id/textView39"
+            app:layout_constraintBottom_toBottomOf="@+id/textView39" />
+
+        <TextView
+            android:id="@+id/textView66"
+            style="@style/textStyleNormal"
+            android:layout_marginTop="1dp"
+            android:text="密码"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+
+        <EditText
+            android:layout_width="200dp"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="@+id/textView66"
+            android:layout_height="0dp"
+            android:inputType="textPassword"
+            android:hint="请输入"
+            android:paddingEnd="15dp"
+            android:text="@={viewModel.password}"
+            android:gravity="center_vertical|end"
+            app:layout_constraintTop_toTopOf="@+id/textView66"
+            app:layout_constraintBottom_toBottomOf="@+id/textView66" />
+
+
+        <TextView
+            android:id="@+id/textView41"
+            style="@style/textStyleNormal"
+            android:text="挂载点"
+            android:layout_marginTop="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
+        <org.angmarch.views.NiceSpinner
+            android:id="@+id/spinner"
+            android:layout_width="200dp"
+            android:gravity="center_vertical|end"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView41"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView41" />
+
+        <Button
+            android:id="@+id/btn_mount_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取挂载点"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

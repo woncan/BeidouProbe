@@ -16,4 +16,9 @@
     <item
         android:id="@+id/five_hz"
         android:title="5Hz" />
+
+
+    <item
+        android:id="@+id/ntrip_setting"
+        android:title="Ntrip配置" />
 </menu>

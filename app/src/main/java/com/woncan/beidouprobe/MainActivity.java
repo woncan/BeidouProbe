@@ -3,10 +3,13 @@ package com.woncan.beidouprobe;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -32,6 +35,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding dataBinding;
+    public static final String SP_NAME = "BDP_NTRIP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +49,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void connectDevice(UsbSerialDriver driver) {
+        SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        String ip = sharedPreferences.getString("ip", "");
+        String port = sharedPreferences.getString("port", "");
+        String account = sharedPreferences.getString("account", "");
+        String password = sharedPreferences.getString("password", "");
+        String mountPoint = sharedPreferences.getString("mountPoint", "");
 
         Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
+        if (device == null) {
+            return;
+        }
+        if (!TextUtils.isEmpty(port)) {
+            device.setNtripAccount(ip, Integer.parseInt(port), account, password, mountPoint);
+        }
         device.setLocationListener(new LocationListener() {
             @Override
-            public void onError(int errCode, Exception e) {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show());
+            public void onError(int errCode, String msg) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, errCode + "   " + msg, Toast.LENGTH_SHORT).show());
             }
 
             @Override
@@ -112,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "请先连接设备", Toast.LENGTH_SHORT).show();
             }
+        }
+        if (itemId==R.id.ntrip_setting) {
+            startActivity(new Intent(this,NtripActivity.class));
         }
         return true;
     }
