@@ -34,12 +34,13 @@ android {
 }
 
 dependencies {
-    implementation(name:'cmc-sdk', ext:'aar')
+
     api 'com.github.mik3y:usb-serial-for-android:3.4.3'
     implementation 'com.squareup.okio:okio:3.0.0'
     implementation "com.squareup.okhttp3:okhttp:4.9.3"
     implementation 'io.reactivex.rxjava3:rxjava:3.1.0'
     api files('libs/device.jar')
+    implementation files('libs/cmcc.jar')
 }
 
 afterEvaluate {
