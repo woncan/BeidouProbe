@@ -17,6 +17,7 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".NtripActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

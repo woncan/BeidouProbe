@@ -28,6 +28,7 @@ import com.woncan.device.Device;
 import com.woncan.device.DeviceManager;
 import com.woncan.device.bean.WLocation;
 import com.woncan.device.listener.LocationListener;
+import com.woncan.device.listener.OnDeviceAttachListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 dataBinding.tvNmea.append(s);
             });
         });
+
     }
 
 
