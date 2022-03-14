@@ -4,21 +4,26 @@
 
 ##### 方式一： Gradle集成SDK
 
-######  在Project的build.gradle文件中配置repositories，添加maven仓库地址
+######  1.1在Project的build.gradle文件中配置repositories，添加maven仓库地址（新版本Android studio需要在settings.gradle里面配置）
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url "https://jitpack.io" }
-		}
-	}
+    repositories {
+            ...
+            maven { url "https://jitpack.io" }
+    }
 ```
-###### 在主工程的build.gradle文件配置dependencies 
+
+###### 在主工程的build.gradle文件配置dependencies
 [![](https://jitpack.io/v/woncan/BeidouProbe.svg)](https://jitpack.io/#woncan/BeidouProbe)
 ```
-	dependencies {
+    android {
+            compileOptions {
+    		    sourceCompatibility JavaVersion.VERSION_1_8
+		    targetCompatibility JavaVersion.VERSION_1_8
+	    }
+    }
+    dependencies {
 	       implementation 'com.github.woncan:BeiDouProbe:latest.release' //其中latest.release指代最新SDK版本号
-	}
+    }
 ```
 ##### 方式二：通过拷贝添加
 ###### 1.添加 jar 文件：
@@ -60,6 +65,15 @@
                 }
             });
     }
+    //注册设备连接监听
+    DeviceManager.registerDeviceAttachListener(MainActivity.this, new OnDeviceAttachListener() {
+            @Override
+            public void onDeviceAttach(UsbSerialDriver usbSerialDriver) {
+                //设备连接手机时回调
+                //需要判断权限
+                connectDevice(usbSerialDriver);
+            }
+    });
 ```
 
 ##### 连接设备
@@ -69,9 +83,9 @@
         //监听定位信息
         device.setLocationListener(new LocationListener() {
             @Override
-            public void onError(Exception e) {
-                Log.i("TAG", "onError: "+e.getMessage());
-                //错误信息
+            public void onError(int errCode, String msg) {
+                //错误信息    修改部分
+                Log.i("TAG", "errCode: "+errCode+"   msg:" + msg);
             }
 
             @Override
@@ -86,16 +100,6 @@
                 //卫星信息
             }
         });
-        //监听设备信息
-         device.setDeviceInfoListener(new DeviceInfoListener() {
-            @Override
-            public void onDeviceInfoReceiver(DeviceInfo deviceInfo) {
-                //设备ID
-                String deviceID = deviceInfo.getDeviceID();
-                //设备名
-                String productName = deviceInfo.getProductName(Locale.CHINA);
-            }
-        });
 	//NMEA数据
         device.setNMEAListener(new NMEAListener() {
             @Override
@@ -105,20 +109,63 @@
         });
     }
 ```
+##### 获取设备信息
+```
+   Device device = DeviceManager.getInstance().getDevice();
+        if (device!=null){
+            DeviceInfo deviceInfo = device.getDeviceInfo();
+        }
+```
+
 ##### 断开连接
-
-
 ```
     DeviceManager.disconnect();
 
 ```
-
-
 ##### 日志
 ```
     LogUtil.setIsDebug(BuildConfig.DEBUG);
 ```
+##### onError状态
 
+# 错误码
+
+| 错误码 | 错误信息 |
+| --- | --- |
+| 1001 | 串口断开       |
+| 1101 | 初始化失败     |
+| 1103 | 初始化失败     |
+| 1111 | 账号出错       |
+| 1112 | 账号出错       |
+| 1113 | 账号出错       |
+| 1114 | 账号出错       |
+| 1116 | 账号出错       |
+| 1117 | 账号出错       |
+| 1201 | 差分服务无响应  |
+| 1211 | 网络错误       |
+| 1212 | 密码错误       |
+| 1213 | 账号过期       |
+| 1214 | 账号待激活     |
+| 1215 | 账号无效       |
+| 1216 | 服务端认证失败  |
+| 1217 | ID错误         |
+| 1218 | 账号已登录      |
+| 1219 | 账号被禁用       |
+| 1220 | 挂载点无效       |
+| 1221 | 失败次数超限       |
+| 1222 | 服务覆盖，但无差分       |
+| 1223 | DNS解析异常       |
+| 1224 | 账号池鉴权入参为空       |
+| 1225 | 频繁登录       |
+| 1226 | 登录类型错误       |
+| 1227 | 账号过期       |
+| 1228 | Cors鉴权失败       |
+| 1229 | 设备ID无效       |
+| 1230 | 账号类型错误       |
+| 1231 | SDK启动失败       |
+| 2001 | 获取账号失败   |
+| 2002 | 获取星历失败   |
+| 3101 | 差分账号或者密码错误   |
 
 ##### WLocation
 
