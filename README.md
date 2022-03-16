@@ -41,6 +41,10 @@
 ```
 [点击下载文件](https://github.com/woncan/BeidouProbe/releases)
 
+##### 添加混淆配置
+
+-keep public class com.woncan.device.**{*;}
+
 ###  使用
 
 ##### 使用拷贝方式添加的需要配置AndroidManifest.xml
