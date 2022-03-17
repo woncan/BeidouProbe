@@ -44,6 +44,7 @@
 ##### 添加混淆配置
 
 -keep public class com.woncan.device.**{*;}
+-keep class com.cmcc.sy.hap.** { *;}
 
 ###  使用
 
