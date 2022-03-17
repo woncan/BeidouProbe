@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.cmcc.sy.hap.** { *;}
+-keep public class com.woncan.device.**{*;}
