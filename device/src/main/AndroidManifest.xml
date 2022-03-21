@@ -13,7 +13,7 @@
     <application>
         <provider
             android:name="com.cmcc.sy.hap.inner.ApplicationProvider"
-            android:authorities="com.cmcc.sy.hap.sdk.contextprovider"
+            android:authorities="${applicationId}.contextprovider"
             android:exported="false" />
     </application>
 </manifest>
