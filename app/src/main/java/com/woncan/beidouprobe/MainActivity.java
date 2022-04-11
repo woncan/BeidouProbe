@@ -29,6 +29,7 @@ import com.woncan.device.DeviceManager;
 import com.woncan.device.bean.WLocation;
 import com.woncan.device.listener.LocationListener;
 import com.woncan.device.listener.OnDeviceAttachListener;
+import com.woncan.device.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         dataBinding.tvNmea.setMovementMethod(ScrollingMovementMethod.getInstance());
         if (!checkLocationPermission()) {

@@ -41,6 +41,7 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.1.0'
     api files('libs/device.jar')
     implementation files('libs/cmcc.jar')
+    implementation files('libs/qx.jar')
 }
 
 afterEvaluate {
