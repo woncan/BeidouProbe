@@ -45,6 +45,7 @@
 ```
 -keep public class com.woncan.device.**{*;}
 -keep class com.cmcc.sy.hap.** { *;}
+-keep public class com.woncan.device.**{*;}
 ```
 ###  使用
 
