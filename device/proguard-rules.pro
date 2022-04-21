@@ -20,5 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.cmcc.sy.hap.** { *;}
 -keep public class com.woncan.device.**{*;}
+-keep class com.cmcc.sy.hap.** { *;}
+-keep class com.qxwz.sdk.** { *;}
