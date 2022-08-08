@@ -119,7 +119,13 @@
 ```
    Device device = DeviceManager.getInstance().getDevice();
         if (device!=null){
-            DeviceInfo deviceInfo = device.getDeviceInfo();
+         //获取设备信息
+        DeviceInfo deviceInfo = device.getDeviceInfo();
+        //修改输出频率
+        device.set5Hz();
+        //device.set1Hz();
+        //配置差分账号
+        device.setNtripAccount(ip, Integer.parseInt(port), account, password, mountPoint);
         }
 ```
 
@@ -134,7 +140,7 @@
 ```
 ##### onError状态
 
-[errCode](https://github.com/woncan/BeidouProbe/blob/master/readme/errCode.md)
+[errCode](https://gitee.com/woncan/BeiDouProbe/blob/master/readme/errCode.md)
 
 ##### WLocation
 
