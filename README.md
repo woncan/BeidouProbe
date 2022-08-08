@@ -115,7 +115,7 @@
         });
     }
 ```
-##### 获取设备信息
+##### 设备配置
 ```
    Device device = DeviceManager.getInstance().getDevice();
         if (device!=null){
