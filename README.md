@@ -125,7 +125,7 @@
         device.set5Hz();
         //device.set1Hz();
         //配置差分账号
-        device.setNtripAccount(ip, Integer.parseInt(port), account, password, mountPoint);
+        device.setNtripAccount(ip,port, account, password, mountPoint);
         }
 ```
 
