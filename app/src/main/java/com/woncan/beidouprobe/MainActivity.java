@@ -26,6 +26,7 @@ import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.woncan.beidouprobe.databinding.ActivityMainBinding;
 import com.woncan.device.Device;
 import com.woncan.device.DeviceManager;
+import com.woncan.device.bean.DeviceInfo;
 import com.woncan.device.bean.WLocation;
 import com.woncan.device.listener.LocationListener;
 import com.woncan.device.listener.OnDeviceAttachListener;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if (!checkLocationPermission()) {
             Toast.makeText(this, "没有定位权限", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private void connectDevice(UsbSerialDriver driver) {
@@ -57,10 +59,18 @@ public class MainActivity extends AppCompatActivity {
         String password = sharedPreferences.getString("password", "");
         String mountPoint = sharedPreferences.getString("mountPoint", "");
 
-        Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
+        Device device = DeviceManager.connectDevice(getApplicationContext(), driver,Device.CGCS2000);
         if (device == null) {
             return;
         }
+        //获取设备信息
+        DeviceInfo deviceInfo = device.getDeviceInfo();
+        //修改输出频率
+        device.set5Hz();
+        //device.set1Hz();
+
+        device.setNtripAccount(ip, Integer.parseInt(port), account, password, mountPoint);
+
         if (!TextUtils.isEmpty(port)) {
             device.setNtripAccount(ip, Integer.parseInt(port), account, password, mountPoint);
         }
@@ -87,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 dataBinding.tvNmea.append(s);
             });
         });
-
     }
 
 
