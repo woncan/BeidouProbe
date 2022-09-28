@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private void connectDevice(UsbSerialDriver driver) {
         SharedPreferences sharedPreferences = getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         String ip = sharedPreferences.getString("ip", "");
-        String port = sharedPreferences.getString("port", "");
+        String port = sharedPreferences.getString("port", "0");
         String account = sharedPreferences.getString("account", "");
         String password = sharedPreferences.getString("password", "");
         String mountPoint = sharedPreferences.getString("mountPoint", "");
