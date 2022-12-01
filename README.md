@@ -85,7 +85,7 @@
 ##### 连接设备
 ```
     private void connectDevice(UsbSerialDriver driver){
-        //默认WGS85
+        //默认WGS84
         Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
         //配置坐标系 （1.3.0及以后版本）
         //Device device = DeviceManager.connectDevice(getApplicationContext(), driver, Device.CGCS2000);
