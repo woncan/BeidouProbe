@@ -87,6 +87,10 @@
     private void connectDevice(UsbSerialDriver driver){
         //默认WGS84
         Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
+	if (device == null) {
+            //device为空时表示没连接上设备
+            return;
+        }
         //配置坐标系 （1.3.0及以后版本）
         //Device device = DeviceManager.connectDevice(getApplicationContext(), driver, Device.CGCS2000);
         //监听定位信息
