@@ -85,7 +85,14 @@
 ##### 连接设备
 ```
     private void connectDevice(UsbSerialDriver driver){
+        //默认WGS84
         Device device = DeviceManager.connectDevice(getApplicationContext(), driver);
+	if (device == null) {
+            //device为空时表示没连接上设备
+            return;
+        }
+        //配置坐标系 （1.3.0及以后版本）
+        //Device device = DeviceManager.connectDevice(getApplicationContext(), driver, Device.CGCS2000);
         //监听定位信息
         device.setLocationListener(new LocationListener() {
             @Override
@@ -115,11 +122,17 @@
         });
     }
 ```
-##### 获取设备信息
+##### 设备配置
 ```
    Device device = DeviceManager.getInstance().getDevice();
         if (device!=null){
-            DeviceInfo deviceInfo = device.getDeviceInfo();
+         //获取设备信息
+        DeviceInfo deviceInfo = device.getDeviceInfo();
+        //修改输出频率
+        device.set5Hz();
+        //device.set1Hz();
+        //配置差分账号
+        device.setNtripAccount(ip,port, account, password, mountPoint);
         }
 ```
 
@@ -134,7 +147,7 @@
 ```
 ##### onError状态
 
-[errCode](https://github.com/woncan/BeidouProbe/blob/master/readme/errCode.md)
+[errCode](https://gitee.com/woncan/BeiDouProbe/blob/master/readme/errCode.md)
 
 ##### WLocation
 
