@@ -29,8 +29,6 @@ import com.woncan.device.DeviceManager;
 import com.woncan.device.bean.DeviceInfo;
 import com.woncan.device.bean.WLocation;
 import com.woncan.device.listener.LocationListener;
-import com.woncan.device.listener.OnDeviceAttachListener;
-import com.woncan.device.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
